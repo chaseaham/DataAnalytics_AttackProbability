@@ -82,27 +82,29 @@ The attacks which went on successful had a significantly different number of hou
 
 # Objective 3
 To determine if there is a relationship between the wounds incurred during an attack and number of hours the attack occurred, correlation test was the most appropriate test as both the variables are numeric. The correlation results are as follows:
-> cor.test (nhours, nwound)
-	Pearson's product-moment correlation
-Data:  nhours and nwound
-t = -0.13643, df = 1778, p-value = 0.8915
-Alternative hypothesis: true correlation is not equal to 0
-95 percent confidence interval:
- -0.04968931  	0.04323236
-Sample estimates:
-         Cor 
--0.003235459
+
+	> cor.test (nhours, nwound)
+		Pearson's product-moment correlation
+	Data:  nhours and nwound
+	t = -0.13643, df = 1778, p-value = 0.8915
+	Alternative hypothesis: true correlation is not equal to 0
+	95 percent confidence interval:
+ 	-0.04968931  	0.04323236
+	Sample estimates:
+         	Cor 
+	-0.003235459
 
 There was a weak negative correlation between the number of hours a person was under attack and the number of wounds incurred, r=-0.003, p= 0.8915.
 
 # Objective 4
 Analysis of variance is the most appropriate test to determine if there was a significance difference in the number of hours that an attack occurred for different types of attack. This the categorical variable had more than two groups and there was a numeric variable. The results of the test are as shown below:
 
-> a<-aov(nhours~Form_attack)
-> summary(a)
-	Df     Sum 	Sq Mean    Sq F value   	Pr(>F)    
-Form_attack     4   	193668      48417   		5.985 8.73e-05 ***
-Residuals      1932 	15628154    8089                     
+	> a<-aov(nhours~Form_attack)
+	> summary(a)
+		Df     Sum 	Sq Mean    Sq F value   	Pr(>F)    
+	Form_attack     4   	193668      48417   		5.985 8.73e-05 ***
+	Residuals      1932 	15628154    8089
+
 ---
 Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
 179754 observations deleted due to missingness
