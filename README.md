@@ -36,9 +36,13 @@ The table displays the descriptive statistics of the major numeric variables in 
 
 
 # Data visualization
+![image](https://user-images.githubusercontent.com/90800294/145158270-daf2fcbd-02d5-4381-ac47-b0697bd7cc9f.png)
+
  
 Figure 1
 The variable number of days in which a place, building or a person was under attack was skewed to the right. This is shown by the results in figure 1 above where the tail of the histogram was longer to the right. 
+
+![image](https://user-images.githubusercontent.com/90800294/145158428-d94b94a8-cc0d-4906-81d5-772a60aa4193.png)
 
  
 Figure 2
@@ -48,8 +52,7 @@ The scatter plot in figure 2 above indicates the relationship between the number
 To determine the most frequent attack type, a bar chart is the most appropriate statistical tool to use. This is because the variable type of attack is a categorical variable and bar chart is the most appropriate to represent the difference between the groups found in the variable. 
  
 Figure 3
-(input figure)
-
+![image](https://user-images.githubusercontent.com/90800294/145159470-b6a55dd2-a89d-4f62-b6a8-b2285009ad24.png)
 
 Figure 3 above indicates the type of attack that were being witnessed and the frequency at which they were happening. Based on this results, bombing and explosion attacks were the most rampant ones followed by armed assault, other kind of attacks, and assassination. There were very few attacks which are categorized as hostage (kidnapping) that were witnessed. 
 
@@ -103,11 +106,13 @@ Table 2
 
 # Objective 5
 To determine the impact of different factors on whether an attack will be successful or not, multiple linear regression analysis is the most appropriate test. This is because the response variable has been coded as a numeric variable and there are more than one independent variables. The results of the model are as shown below:
-Call:
-lm(formula = success ~ nhours + Form_attack + specificity)
-Residuals:
-     Min       	1Q   		Median      	 3Q      		Max 
--0.99662  	0.00749  	0.00752  	0.00958  	0.11174 
+
+
+	Call:
+		lm(formula = success ~ nhours + Form_attack + specificity)
+	Residuals:
+	     Min       	1Q   		Median      	 3Q      		Max 
+	-0.99662  	0.00749  	0.00752  	0.00958  	0.11174 
 Coefficients:
                                          Estimate Std. Error t value Pr(>|t|)    
 (Intercept)                             9.883e-01  6.949e-03 142.237  < 2e-16 ***
@@ -130,4 +135,18 @@ From this study, it is evident that the most frequent crime in the world is bomb
 It was also evident that that those attacks which were successful took a much longer time than those that were unsuccessful. This indicates that when there is no intervention during attacks such as police intervention or the intervention of the public there is a higher likelihood of it being a success. People should have contact people whom they can reach during attacks or the toll number be made more efficient so that the police and security force can be easily notified in case of any attacks. There was a significance difference in the time that different attacks took. The one weakness with one way Anova that was used for this test is that it did not show which groups were significantly different from the other. Another limitation for this study was the presence of many missing values which interferes with the meaningfulness and accuracy of the results. There were many variables that lacked the variable description making it hard to use this variables in the model and for other tests. The reliability of the model was very low this might be attributed to a lot of missing values.
 
 
+
+![image](https://user-images.githubusercontent.com/90800294/145157578-6c0ee833-d9f9-44a0-9e70-ea00afb140af.png)
+
+
+  nhours           nwound             ndays       
+ Min.   :  0.00   Min.   :   0.000   Min.   :   0.0  
+ 1st Qu.:  0.00   1st Qu.:   0.000   1st Qu.:   1.0  
+ Median :  0.00   Median :   0.000   Median :   4.0  
+ Mean   :  9.99   Mean   :   3.168   Mean   :  40.6  
+ 3rd Qu.:  1.00   3rd Qu.:   2.000   3rd Qu.:  18.0  
+ Max.   :999.00   Max.   :8191.000   Max.   :2454.0  
+ NA's   :179754   NA's   :16311      NA's   :177822  
+> ![image](https://user-images.githubusercontent.com/90800294/145159432-a1e6ca6e-8057-49ac-b53d-42bf4b0258d2.png)
+![image](https://user-images.githubusercontent.com/90800294/145159437-2ccef321-b430-4825-bf63-bd5e3da0c13a.png)
 
