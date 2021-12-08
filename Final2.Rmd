@@ -1,0 +1,92 @@
+---
+title: "final2"
+author: "chase"
+date: "12/7/2021"
+output:
+  html_document: default
+  pdf_document: default
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+# Reading data into R studio
+mydata<-read.csv ("C:/Users/computer/Documents/GitHub/chaseaham.github.io/globalterrorismdb_0718dist.csv")
+
+
+# removing negative values
+mydata[mydata < 0] <- NA
+attach(mydata)
+
+# data coding
+library(dplyr)
+Form_attack<-mydata |>  
+  select(attacktype1_txt) |> 
+  mutate(
+    type = case_when(
+      attacktype1_txt=="Armed Assault" ~ "Armed Assault",
+      attacktype1_txt=="Assassination" ~ "Assassination",
+      attacktype1_txt=="Hostage Taking (Kidnapping)" ~ "Hostage Taking (Kidnapping)",
+      attacktype1_txt=="Bombing/Explosion" ~ "Bombing/Explosion",
+      TRUE                      ~ "other"
+    )
+  )
+
+#taking one column from dataframe 
+Form_attack<-Form_attack$type
+
+
+mydata<-as.data.frame(cbind(mydata,Form_attack))
+attach(mydata)
+
+# Histogram of number of days under attack
+library(ggplot2)
+ggplot(mydata, aes(x = ndays)) +
+  geom_histogram(fill = "cornflowerblue",
+                 color = "white") +
+  labs(title="Number of days under attcak",
+       x = "Days")
+#
+ggplot(mydata,
+       aes(x = nhours,
+           y = nwound)) +
+  geom_point(color="cornflowerblue")+
+      scale_x_continuous(breaks = seq(0, 50, 5), limits = c(0, 50))+
+  scale_y_continuous(breaks = seq(0, 200, 20), limits = c(0, 200))+
+  geom_smooth(method = "lm")+
+      labs(title = "Relationship between number of hours under attack and number of wounds")
+             
+# To determine the most frequent attack type 
+
+ggplot(mydata, aes(x = Form_attack)) +
+  geom_bar(fill = "cornflowerblue",
+           color="black") +
+  labs(x = "Types of attack",
+       y = "Frequency",
+       title = "Types of attack")
+
+#To determine if there is significance difference in the number of hours taken between those attacks; that were successful and those that failed
+t.test(nhours~success)
+
+
+#To determine if there is a relationship between the wounds incurred during an attack 
+# and number of hours the attack occurred.
+cor.test(nhours,nwound)
+
+# To determine the impact of other factors on the success of the attack
+model1<-lm(success~nhours+Form_attack+specificity)
+summary(model1)
+
+# Different types of attack took different days
+a<-aov(nhours~Form_attack)
+summary(a)
+
+## correlation test
+df<-as.data.frame(cbind(nhours,nwound,ndays))
+summary(df)
+library(psych)
+describe(df)
+
+
+
+```
