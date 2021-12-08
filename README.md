@@ -23,12 +23,12 @@ iday: the day that the attack happened
 We will use descriptive statistics to have an overview of how the data looks and determine the kind of relationships that exist in the dataset. We will use data visualization to chart the data in a form that is easy to understand and interpret. Regression analysis, two sample t test, correlation analysis and one way Anova will be used to solve objective 2, 3, 4 and 5. The results of this study are as shown below.
 
 # Results
-# Descriptive
+	# Descriptive
 
-       vars      n  mean     sd median trimmed  mad min  max range   skew kurtosis
-nhours    1   1937  9.99  90.40      0    0.60 0.00   0  999   999  10.82   115.33
-nwound    2 165380  3.17  35.95      0    0.89 0.00   0 8191  8191 174.70 36808.41
-ndays     3   3869 40.60 143.68      4   11.31 4.45   0 2454  2454   8.25    89.50
+       		vars      n  mean     sd median trimmed  mad min  max range   skew kurtosis
+	nhours    1   1937  9.99  90.40      0    0.60 0.00   0  999   999  10.82   115.33
+	nwound    2 165380  3.17  35.95      0    0.89 0.00   0 8191  8191 174.70 36808.41
+	ndays     3   3869 40.60 143.68      4   11.31 4.45   0 2454  2454   8.25    89.50
 
 Table 1
 
