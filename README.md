@@ -21,15 +21,15 @@ imonth: The month that the attack happened
 iyear: the year that the attack happened
 iday: the day that the attack happened
 
-We will use descriptive statistics to have an overview of how the data looks and determine the kind of relationships that exist in the dataset. We will use data visualization to chart the data in a form that is easy to understand and interpret. Regression analysis(relationships between variables), two sample t test(determine if means are equal), correlation analysis and one way #Anova will be used to solve objective 2, 3, 4 and 5. The results of this study are as shown below.
+We will use descriptive statistics to have an overview of how the data looks and determine the kind of relationships that exist in the dataset. We will use data visualization to chart the data in a form that is easy to understand and interpret. Regression analysis(relationships between variables), two sample t test(determine if means are equal), correlation analysis and one way Anova will be used to solve objective 2, 3, 4 and 5. The results of this study are as shown below.
 
 # Results
 	# Descriptive
 
-       		vars   n    mean   sd     median trimmed  mad min  max range   skew   kurtosis
-	nhours    1   1937  9.99  90.40      0    0.60 0.00   0  999   999  10.82     115.33
-	nwound    2  165380 3.17  35.95      0    0.89 0.00   0 8191  8191 174.70     36808.41
-	ndays     3   3869  40.60 143.68     4    11.31 4.45  0 2454  2454   8.25      89.50
+       		vars   n    mean   sd     median   trimmed  mad    min     max      range    skew      kurtosis
+	nhours    1   1937  9.99  90.40      0      0.60    0.00    0       999       999     10.82     115.33
+	nwound    2  165380 3.17  35.95      0      0.89    0.00    0       8191      8191     174.70    36808.41
+	ndays     3   3869  40.60 143.68     4      11.31    4.45   0       2454      2454     8.25      89.50
 
 
 
@@ -97,11 +97,12 @@ There was a weak negative correlation between the number of hours a person was u
 
 # Objective 4
 Analysis of variance is the most appropriate test to determine if there was a significance difference in the number of hours that an attack occurred for different types of attack. This the categorical variable had more than two groups and there was a numeric variable. The results of the test are as shown below:
+
 > a<-aov(nhours~Form_attack)
 > summary(a)
-              Df   Sum Sq Mean Sq F value   Pr(>F)    
-Form_attack    4   193668   48417   5.985 8.73e-05 ***
-Residuals   1932 15628154    8089                     
+	Df     Sum 	Sq Mean    Sq F value   	Pr(>F)    
+Form_attack     4   	193668      48417   		5.985 8.73e-05 ***
+Residuals      1932 	15628154    8089                     
 ---
 Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
 179754 observations deleted due to missingness
@@ -128,9 +129,10 @@ To determine the impact of different factors on whether an attack will be succes
 	Form_attackother                       -2.783e-03  8.268e-03  -0.337  0.73641    
 	specificity                             2.072e-03  1.874e-03   1.106  0.26878    
 
-Residual standard error: 0.09769 on 1929 degrees of freedom (179755 observations deleted due to missingness)
-Multiple R-squared:  0.2152,	Adjusted R-squared:  0.1848 
-F-statistic: 7.072 on 6 and 1929 DF, p-value: 1.827e-07
+	Residual standard error: 0.09769 on 1929 degrees of freedom (179755 observations deleted due to missingness)
+				Multiple R-squared:  0.2152,	Adjusted R-squared:  0.1848 
+		F-statistic: 7.072 on 6 and 1929 DF, p-value: 1.827e-07
+		
 The regression model is significant in the prediction of whether an attack will be successful or not based on form of attack, specificity and number of hours, p=1.827e-07, F (6, 1929) = 7.072. The study rejects the hypothesis that the model is insignificant. The model is able to predict 18.48% of the variation in the response variable using the predictor variable.
 
 From the regression model above, nhours has a coefficient estimate of 0.0000809. This indicates that for every unit increase in the number of hours under attack the higher the chance of the attack being successful. The variable attack from hostage taking has a coefficient estimate of 0.0027 compared to assault while assassination has a coefficient estimate of -0.1022. Specificity has a coefficient estimate of 0.00207 in the regression model. This indicates that for every unit increase in the specificity there is a 0.00207 unit increase in an attack being successful.
