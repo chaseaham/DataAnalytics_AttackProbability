@@ -14,7 +14,7 @@ knitr::opts_chunk$set(echo = TRUE)
 mydata<-read.csv ("C:/Users/computer/Documents/GitHub/chaseaham.github.io/globalterrorismdb_0718dist.csv")
 
 
-# removing negative values
+# removing negative values, there were negative observations like number of hours and days.
 mydata[mydata < 0] <- NA
 attach(mydata)
 
@@ -46,6 +46,7 @@ ggplot(mydata, aes(x = ndays)) +
                  color = "white") +
   labs(title="Number of days under attcak",
        x = "Days")
+    
 #
 ggplot(mydata,
        aes(x = nhours,
@@ -65,15 +66,18 @@ ggplot(mydata, aes(x = Form_attack)) +
        y = "Frequency",
        title = "Types of attack")
 
-#To determine if there is significance difference in the number of hours taken between those attacks; that were successful and those that failed
-t.test(nhours~success)
+#To determine if there is significance difference in the number of hours taken between those attacks; that were successful and those that failed. We are looking at the p-value or mean and comparing it to the alpha value. P-value is lower than the alpha value, so we reject the null hypothesis. There is a relationship. 
+t.test(nhours~success) #compares means
 
 
 #To determine if there is a relationship between the wounds incurred during an attack 
-# and number of hours the attack occurred.
-cor.test(nhours,nwound)
+#and number of hours the attack occurred. The relationship is describe a weak negative, see cor.estimate(r) thus the p-value is high. We keep the null hypothesis. There is no relationship.
+cor.test(nhours,nwound) #describes relationship
 
-# To determine the impact of other factors on the success of the attack
+
+# To determine the impact of other factors on the success of the attack (specificity = location)
+#success is coded as 1 and failure as 0. If correlation estimates are positive they indicate success and vice versa. 
+# we are looking at the f value and p values 
 model1<-lm(success~nhours+Form_attack+specificity)
 summary(model1)
 
