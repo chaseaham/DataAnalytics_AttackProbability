@@ -20,19 +20,17 @@ Type of attack: the type of attack
 imonth: The month that the attack happened
 iyear: the year that the attack happened
 iday: the day that the attack happened
+specificity: location
 
-We will use descriptive statistics to have an overview of how the data looks and determine the kind of relationships that exist in the dataset. We will use data visualization to chart the data in a form that is easy to understand and interpret. Regression analysis(relationships between variables), two sample t test(determine if means are equal), correlation analysis and one way Anova will be used to solve objective 2, 3, 4 and 5. The results of this study are as shown below.
+We will use descriptive statistics to have an overview of how the data looks and determine the kind of relationships that exist in the dataset. We will use data visualization to chart the data in a form that is easy to understand and interpret. Regression analysis(relationships between variables), two sample t test(determine if there is significane for two variables), correlation analysis(determine relationship between two variables) and one way Anova(comparing more than two variables) will be used to solve objective 2, 3, 4 and 5. The results of this study are as shown below.
 
 # Results
-	# Descriptive
+	# Descriptive 
 
-       		vars   n    mean   sd     median   trimmed  mad    min     max      range    skew      kurtosis
-	nhours    1   1937  9.99  90.40      0      0.60    0.00    0       999       999     10.82     115.33
-	nwound    2  165380 3.17  35.95      0      0.89    0.00    0       8191      8191     174.70    36808.41
-	ndays     3   3869  40.60 143.68     4      11.31    4.45   0       2454      2454     8.25      89.50
-
-
-
+       		vars   	n    	mean  	 sd     median   trimmed  mad    min     max      range    skew      kurtosis
+	nhours    1   	1937  	9.99  	90.40      0      0.60    0.00    0       999       999     10.82     115.33
+	nwound    2  	165380 	3.17  	35.95      0      0.89    0.00    0       8191      8191    174.70    36808.41
+	ndays     3   	3869  	40.60 	143.68     4      11.31   4.45    0       2454      2454    8.25      89.50
 
 
 Table 1
@@ -51,10 +49,10 @@ The variable number of days in which a place, building or a person was under att
 
  
 Figure 2
-The scatter plot in figure 2 above indicates the relationship between the number of hours under attack and the number of wounds a person incurred. There was a positive relationship between the number of wounds incurred by a person and the number of hours the person was being attacked. To determine the nature and strength of the relationship we will conduct person correlation test.
+The scatter plot in figure 2 above indicates the relationship between the number of hours under attack and the number of wounds a person incurred. There was a positive relationship between the number of wounds incurred by a person and the number of hours the person was being attacked. To determine the nature and strength of the relationship we will conduct pearson correlation test.
 
 # Objective 1
-To determine the most frequent attack type, a bar chart is the most appropriate *statistical tool to use. This is because, the variable type of attack is a categorical variable and bar chart is the most appropriate to represent the difference between the groups found in the variable. 
+To determine the most frequent attack type, a bar chart is the most appropriate tool to use. This is because, the variable type of attack is a categorical variable and bar chart is the most appropriate to represent the difference between the groups found in the variable. 
  
 Figure 3
 ![image](https://user-images.githubusercontent.com/90800294/145159470-b6a55dd2-a89d-4f62-b6a8-b2285009ad24.png)
@@ -114,7 +112,8 @@ Table 2
 
 # Objective 5
 To determine the impact of different factors on whether an attack will be successful or not, multiple linear regression analysis is the most appropriate test. This is because the response variable has been coded as a numeric variable and there are more than one independent variables. The results of the model are as shown below:
-
+Success is coded as 1 and failures as 0. A positive coefficant estimate indicates that success will increase. 
+Then we use f value together with p value to determine if the whole model is significant. 
 
 	Call:
 		lm(formula = success ~ nhours + Form_attack + specificity)
