@@ -143,6 +143,15 @@ From this study, it is evident that the most frequent crime in the world is bomb
 
 It was also evident that that those attacks which were successful took a much longer time than those that were unsuccessful. This indicates that when there is no intervention during attacks such as, police intervention or the intervention of the public there is a higher likelihood of it being a success. People should have contact people whom they can reach during attacks or the toll number be made more efficient so that the police and security force can be easily notified in case of any attacks. There was a significance difference in the time that different attacks took. The one weakness with one way Anova that was used for this test is that it did not show which groups were significantly different from the other.Another limitation for this study was the presence of many missing values which interferes with the meaningfulness and accuracy of the results. There were many variables that lacked the variable description making it hard to use this variables in the model and for other tests. The reliability of the model was very low this might be attributed to a lot of missing values.
 
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
 
 
 
@@ -173,5 +182,108 @@ It was also evident that that those attacks which were successful took a much lo
 		Analysis of variance (Anova) - https://www.youtube.com/watch?v=5SIifsW2aKA
 		Anova reference book - https://bookdown.org/steve_midway/DAR/understanding-anova-in-r.html
 		Interpreting results - https://www.youtube.com/watch?v=D3d89aoWRR4
+		
+		
+		
+		
+		
+		# Raw Code: 
+		---
+		title: "final2"
+		author: "chase"
+		date: "12/7/2021"
+		output:
+		  html_document: default
+		  pdf_document: default
+		---
+
+		```{r setup, include=FALSE}
+		knitr::opts_chunk$set(echo = TRUE)
+
+		# Reading data into R studio
+		mydata<-read.csv ("C:/Users/computer/Documents/GitHub/chaseaham.github.io/globalterrorismdb_0718dist.csv")
+
+
+		# removing negative values, there were negative observations like number of hours and days.
+		mydata[mydata < 0] <- NA
+		attach(mydata)
+
+		# data coding
+		library(dplyr)
+		Form_attack<-mydata |>  
+		  select(attacktype1_txt) |> 
+		  mutate(
+		    type = case_when(
+		      attacktype1_txt=="Armed Assault" ~ "Armed Assault",
+		      attacktype1_txt=="Assassination" ~ "Assassination",
+		      attacktype1_txt=="Hostage Taking (Kidnapping)" ~ "Hostage Taking (Kidnapping)",
+		      attacktype1_txt=="Bombing/Explosion" ~ "Bombing/Explosion",
+		      TRUE                      ~ "other"
+		    )
+		  )
+
+		#taking one column from dataframe 
+		Form_attack<-Form_attack$type
+
+
+		mydata<-as.data.frame(cbind(mydata,Form_attack))
+		attach(mydata)
+
+		# Histogram of number of days under attack
+		library(ggplot2)
+		ggplot(mydata, aes(x = ndays)) +
+		  geom_histogram(fill = "cornflowerblue",
+				 color = "white") +
+		  labs(title="Number of days under attcak",
+		       x = "Days")
+
+		#
+		ggplot(mydata,
+		       aes(x = nhours,
+			   y = nwound)) +
+		  geom_point(color="cornflowerblue")+
+		      scale_x_continuous(breaks = seq(0, 50, 5), limits = c(0, 50))+
+		  scale_y_continuous(breaks = seq(0, 200, 20), limits = c(0, 200))+
+		  geom_smooth(method = "lm")+
+		      labs(title = "Relationship between number of hours under attack and number of wounds")
+
+		# To determine the most frequent attack type 
+
+		ggplot(mydata, aes(x = Form_attack)) +
+		  geom_bar(fill = "cornflowerblue",
+			   color="black") +
+		  labs(x = "Types of attack",
+		       y = "Frequency",
+		       title = "Types of attack")
+
+		#To determine if there is significance difference in the number of hours taken between those attacks; that were successful and those that failed. We are looking at the p-value or mean and comparing it to the alpha value. P-value is lower than the alpha value, so we reject the null hypothesis. There is a relationship. 
+		t.test(nhours~success) #compares means
+
+
+		#To determine if there is a relationship between the wounds incurred during an attack 
+		#and number of hours the attack occurred. The relationship is describe a weak negative, see cor.estimate(r) thus the p-value is high. We keep the null hypothesis. There is no relationship.
+		cor.test(nhours,nwound) #describes relationship
+
+
+		# To determine the impact of other factors on the success of the attack (specificity = location)
+		#sucess is coded as 1 and failure as 0. If correlation estimates are positive thyy indiciate sucess and vice versa. 
+		# we are looking at the f value and p values 
+		model1<-lm(success~nhours+Form_attack+specificity)
+		summary(model1)
+
+		# Different types of attack took different days
+		a<-aov(nhours~Form_attack)
+		summary(a)
+
+		## correlation test
+		df<-as.data.frame(cbind(nhours,nwound,ndays))
+		summary(df)
+		library(psych)
+		describe(df)
+
+
+
+		```
+
 
 
