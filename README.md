@@ -76,7 +76,7 @@ To determine if there is significance difference in the number of hours taken be
 	Mean in group 0    mean in group 1 
 	       3.026316       10.063999
        
-The attacks which went on successful had a significantly different number of hours that it occurred (N=10.06) as compared to those which were not successful (N=3.02), t (155.77) =-2.7694, p =0.0062. The study rejects the null hypothesis since the p value is less than the significance alpha value of 0.05. Those attacks that went through successfully took longer hours.
+The attacks which went on successful had a significantly different number of hours that it occurred (N=10.06) as compared to those which were not successful (N=3.02), df= (155.77) t=-2.7694, p =0.0062. The study rejects the null hypothesis since the p value is less than the significance alpha value of 0.05. Those attacks that went through successfully took longer hours.
 
 # Objective 3
 To determine if there is a relationship between the wounds incurred during an attack and number of hours the attack occurred, correlation test was the most appropriate test as both the variables are numeric. The correlation results are as follows:
@@ -143,5 +143,35 @@ From this study, it is evident that the most frequent crime in the world is bomb
 
 It was also evident that that those attacks which were successful took a much longer time than those that were unsuccessful. This indicates that when there is no intervention during attacks such as, police intervention or the intervention of the public there is a higher likelihood of it being a success. People should have contact people whom they can reach during attacks or the toll number be made more efficient so that the police and security force can be easily notified in case of any attacks. There was a significance difference in the time that different attacks took. The one weakness with one way Anova that was used for this test is that it did not show which groups were significantly different from the other.Another limitation for this study was the presence of many missing values which interferes with the meaningfulness and accuracy of the results. There were many variables that lacked the variable description making it hard to use this variables in the model and for other tests. The reliability of the model was very low this might be attributed to a lot of missing values.
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	#Resources:
+
+		How to compare means - http://www.sthda.com/english/wiki/comparing-means-in-r
+
+		two sample t test - https://www.youtube.com/watch?v=yF9_SQ8m698
+		t-test w/ dplyr - https://www.youtube.com/watch?v=ANMuuq502rE
+		how to report t-test - http://www.csic.cornell.edu/Elrod/t-test/reporting-t-test.html
+
+		correlation test - https://www.statology.org/correlation-between-multiple-variables-in-r/
+		how to test statistical significance of correlation - https://www.youtube.com/watch?v=e3MNPRQgVgU-5uv4wryI
+
+		Analysis of variance (Anova) - https://www.youtube.com/watch?v=5SIifsW2aKA
+		Anova reference book - https://bookdown.org/steve_midway/DAR/understanding-anova-in-r.html
+		Interpreting results - https://www.youtube.com/watch?v=D3d89aoWRR4
 
 
