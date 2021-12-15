@@ -207,7 +207,9 @@ It was also evident that that those attacks which were successful took a much lo
 		mydata[mydata < 0] <- NA
 		attach(mydata)
 
-		# data coding
+		# # To make the data easier to work with, we create a new data frame called Form_attack.
+		The top 4 forms of of attack from attacktype1_txt in mydata are selected and the remainders are rolled into 'other'.
+		
 		library(dplyr)
 		Form_attack<-mydata |>  
 		  select(attacktype1_txt) |> 
@@ -217,13 +219,11 @@ It was also evident that that those attacks which were successful took a much lo
 		      attacktype1_txt=="Assassination" ~ "Assassination",
 		      attacktype1_txt=="Hostage Taking (Kidnapping)" ~ "Hostage Taking (Kidnapping)",
 		      attacktype1_txt=="Bombing/Explosion" ~ "Bombing/Explosion",
-		      TRUE                      ~ "other"
-		    )
-		  )
+		      TRUE                      ~ "other" 
+		      ))
 
-		#taking one column from dataframe 
+		#Taking one column from the new data frame and merging it back into the original with the name type.  
 		Form_attack<-Form_attack$type
-
 
 		mydata<-as.data.frame(cbind(mydata,Form_attack))
 		attach(mydata)
@@ -236,7 +236,7 @@ It was also evident that that those attacks which were successful took a much lo
 		  labs(title="Number of days under attcak",
 		       x = "Days")
 
-		#
+		# A point plot with a slope showing the relationship between the number of hours under attack and wounds.
 		ggplot(mydata,
 		       aes(x = nhours,
 			   y = nwound)) +
@@ -255,13 +255,29 @@ It was also evident that that those attacks which were successful took a much lo
 		       y = "Frequency",
 		       title = "Types of attack")
 
-		#To determine if there is significance difference in the number of hours taken between those attacks; that were successful and those that failed. We are looking at the p-value or mean and comparing it to the alpha value. P-value is lower than the alpha value, so we reject the null hypothesis. There is a relationship. 
+		#To determine if there is significance difference in the number of hours taken between those attacks; that were successful and those that failed. 
+		We are looking at the p-value or mean and comparing it to the alpha value. P-value is lower than the alpha value, so we reject the null hypothesis. 
+		There is a relationship. 
+		
 		t.test(nhours~success) #compares means
+				# Welch Two Sample t-test
+
+				data:  nhours by success
+				t = -2.7694, df = 155.77, p-value = 0.006299
+				alternative hypothesis: true difference in means between group 0 and group 1 is not equal to 0
+				95 percent confidence interval:
+				 -12.057453  -2.017913
+				sample estimates:
+				mean in group 0 mean in group 1 
+				       3.026316       10.063999 
 
 
 		#To determine if there is a relationship between the wounds incurred during an attack 
-		#and number of hours the attack occurred. The relationship is describe a weak negative, see cor.estimate(r) thus the p-value is high. We keep the null hypothesis. There is no relationship.
-		cor.test(nhours,nwound) #describes relationship
+		#and number of hours the attack occurred. 
+		#The relationship is describe a weak negative, see cor.estimate(r) thus the p-value is high. 
+		#We keep the null hypothesis. There is no relationship.
+
+cor.test(nhours,nwound) #describes relationship
 
 
 		# To determine the impact of other factors on the success of the attack (specificity = location)
